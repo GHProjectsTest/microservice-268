@@ -116,6 +116,32 @@ public class MensaTest {
   }
 
 
+  /**
+   * 
+   * Test for the GETdishesidratingsnotfoundtest_ID948987 method.
+   * 
+   */
+  @Test
+  public void testGETdishesidratingsnotfoundtest_ID948987() {
+    MiniClientCoverage c = new MiniClientCoverage(mainPath);
+    c.setConnectorEndpoint(connector.getHttpEndpoint());
+    
+        
+    try {
+      c.setLogin(AnonymousAgentImpl.IDENTIFIER, "");
+      ClientResponse result = c.sendRequest("GET", "/dishes/{id}/ratings", """
+""", "text/plain", "*/*", new HashMap<>(), "99999");
+      System.out.println("Result of request with id: 604937: " + result.getResponse().trim());
+    
+      Assert.assertEquals("[103826]", 404, result.getHttpCode());
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Exception: " + e);
+    }
+
+    
+  }
 
 
 
